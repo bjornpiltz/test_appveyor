@@ -1,0 +1,26 @@
+version: 1.0.{build}
+
+environment:
+  matrix:
+    - IDENTIFIER: msvc_2015_x86
+    - IDENTIFIER: msvc_2015_x64
+    - IDENTIFIER: msvc_2017_x86
+    - IDENTIFIER: msvc_2017_x64
+    
+build_script:
+  - echo test > %IDENTIFIER%.zip
+
+artifacts:
+  - path: %IDENTIFIER%.zip
+    name: %IDENTIFIER%
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: QpA0FlNUekmYC5AQk77FEpMZ7iRP7LmXX19NTnIdRq4Bunregvdw3iPJ6epPpabJ
+  artifact: %IDENTIFIER%
+  draft: false
+  prerelease: false
+  on:
+    appveyor_repo_tag: true
+
