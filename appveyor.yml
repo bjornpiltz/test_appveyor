@@ -8,17 +8,17 @@ environment:
     - IDENTIFIER: msvc_2017_x64
     
 build_script:
-  - echo test > %IDENTIFIER%.zip
+  - echo test > installer_%IDENTIFIER%.zip
 
 artifacts:
-  - path: %IDENTIFIER%.zip
-    name: %IDENTIFIER%
+  - path: installer_%IDENTIFIER%.zip
+    name: installer_%IDENTIFIER%
 
 deploy:
   provider: GitHub
   auth_token:
     secure: QpA0FlNUekmYC5AQk77FEpMZ7iRP7LmXX19NTnIdRq4Bunregvdw3iPJ6epPpabJ
-  artifact: %IDENTIFIER%
+  artifact: installer_%IDENTIFIER%
   draft: false
   prerelease: false
   on:
